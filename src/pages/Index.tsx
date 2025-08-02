@@ -6,6 +6,13 @@ import WasteClassifier from '@/components/WasteClassifier';
 import heroImage from '@/assets/hero-waste-sorting.jpg';
 
 const Index = () => {
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-bg">
       {/* Hero Section */}
@@ -19,6 +26,9 @@ const Index = () => {
               </div>
               
               <h1 className="text-5xl font-bold text-foreground leading-tight">
+                <span className="text-2xl font-semibold bg-gradient-eco bg-clip-text text-transparent block mb-2">
+                  EcoVerse
+                </span>
                 Sort Your Trash
                 <span className="block bg-gradient-eco bg-clip-text text-transparent">
                   Intelligently
@@ -30,11 +40,11 @@ const Index = () => {
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button variant="eco" size="xl" className="group">
+                <Button variant="eco" size="xl" className="group" onClick={() => scrollToSection('waste-classifier')}>
                   <Camera className="w-5 h-5 group-hover:scale-110 transition-transform" />
                   Start Sorting
                 </Button>
-                <Button variant="outline" size="xl">
+                <Button variant="outline" size="xl" onClick={() => scrollToSection('how-it-works')}>
                   Learn More
                 </Button>
               </div>
@@ -53,7 +63,7 @@ const Index = () => {
       </div>
 
       {/* Features Section */}
-      <div className="container mx-auto px-4 py-16">
+      <div id="how-it-works" className="container mx-auto px-4 py-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-4">How It Works</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -106,7 +116,9 @@ const Index = () => {
         </div>
 
         {/* Waste Classifier Component */}
-        <WasteClassifier />
+        <div id="waste-classifier">
+          <WasteClassifier />
+        </div>
       </div>
 
       {/* Benefits Section */}
